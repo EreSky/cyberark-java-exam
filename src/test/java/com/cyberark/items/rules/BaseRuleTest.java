@@ -23,7 +23,7 @@ class BaseRuleTest {
     }
 
     @Test
-    public void whenAboveThousandStaysThousand() {
+    public void whenAboveThousandDoesntChange() {
         Item item = new Item(1, ItemType.BANANA, 12, 1000);
         rule = new GainsValueWithAgeRule();
         Item result = rule.update(item);

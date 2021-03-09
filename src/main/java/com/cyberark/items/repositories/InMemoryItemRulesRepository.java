@@ -12,7 +12,7 @@ import java.util.Map;
 @Slf4j
 @Component
 public class InMemoryItemRulesRepository implements ItemRulesRepository {
-    private Map<ItemType, ItemRuleType> itemRules;
+    private final Map<ItemType, ItemRuleType> itemRules;
 
     public InMemoryItemRulesRepository() {
         itemRules = new HashMap<>();
@@ -27,9 +27,4 @@ public class InMemoryItemRulesRepository implements ItemRulesRepository {
     public ItemRuleType getRuleType(ItemType itemType) {
         return itemRules.getOrDefault(itemType, ItemRuleType.LOSES_CONSTANT_VALUE_WITH_AGE);
     }
-
-//    @Override
-//    public Map<ItemType, ItemRuleType> getItemRules() {
-//        return ItemRules;
-//    }
 }
