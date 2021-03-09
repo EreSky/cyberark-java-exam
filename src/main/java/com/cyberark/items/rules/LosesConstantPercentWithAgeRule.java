@@ -15,19 +15,20 @@ public class LosesConstantPercentWithAgeRule extends BaseRule {
     protected Item updateItem(Item item, int factor) {
         int daysToExpire = item.getDaysToExpire();
         item.setDaysToExpire(--daysToExpire);
-
         int price = item.getPrice();
 
-        if (factor == 2) {
-            if (price >= 20) { //todo: move to const/config
+        for (int i = 0; i < factor; i++) {
+            if (price >= 20) {
                 subtractPercentage(item, price);
             }
         }
-        if (price >= 20) {
-            subtractPercentage(item, price);
-        }
 
         return item;
+    }
+
+    @Override
+    public ItemRuleType getRuleType() {
+        return ItemRuleType.LOSES_CONSTANT_PERCENT_WITH_AGE;
     }
 
     private void subtractPercentage(Item item, int price) {
@@ -35,10 +36,5 @@ public class LosesConstantPercentWithAgeRule extends BaseRule {
                 .setScale(0, RoundingMode.HALF_UP)
                 .intValue();
         item.setPrice(price);
-    }
-
-    @Override
-    public ItemRuleType getRuleType() {
-        return ItemRuleType.LOSES_CONSTANT_PERCENT_WITH_AGE;
     }
 }

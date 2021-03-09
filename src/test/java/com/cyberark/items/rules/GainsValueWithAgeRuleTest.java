@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FixedValueRuleTest {
-    private final Rule rule = new FixedValueRule();
+class GainsValueWithAgeRuleTest {
+    private final Rule rule = new GainsValueWithAgeRule();
 
     @Test
-    public void whenItemUpdatedRuleDoesntChangeItem() {
+    public void whenItemUpdatedRuleChangePriceOnlyByOne() {
         Item item = new Item(1, ItemType.BANANA, 12, 19);
         Item result = rule.update(item);
-        assertEquals(19, result.getPrice());
+        assertEquals(20, result.getPrice());
         assertEquals(12, result.getDaysToExpire());
     }
 }

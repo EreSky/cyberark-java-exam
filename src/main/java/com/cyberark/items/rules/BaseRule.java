@@ -10,11 +10,7 @@ public abstract class BaseRule implements Rule {
 
     @Override
     public Item update(Item item) {
-        // todo: custom logic
-        int factor = 1;
-        if (item.getDaysToExpire() <= 0) {
-            factor = 2;
-        }
+        int factor = item.getDaysToExpire() <= 0 ? 2 : 1;
 
         Item result = updateItem(item, factor);
         if (result.getPrice() < 0) {
@@ -28,5 +24,6 @@ public abstract class BaseRule implements Rule {
     }
 
     protected abstract Item updateItem(Item item, int factor);
+
     public abstract ItemRuleType getRuleType();
 }
